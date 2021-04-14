@@ -37,7 +37,7 @@ public:
         _splitter->addWidget(_infos);
         connect(this,SIGNAL(signalFrameUpdated()),this,SLOT(slotFrameUpdated()));
         _subFrameVis=GSLAM::Messenger::instance().subscribe("dataset/frame",[this](FramePtr frame){
-                setFrame(frame);
+            setFrame(frame);
         });
         setObjectName("Frame Visualizer");
         setProperty("area","right");

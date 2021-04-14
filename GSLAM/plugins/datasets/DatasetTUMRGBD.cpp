@@ -80,6 +80,7 @@ public:
         return path;
     }
     virtual GSLAM::FramePtr grabFrame(){
+        std::cout << "grabFrame in tumrgbd dataset\n";
         double t1,t2,t3;
         double x,y,z,qx,qy,qz,qw;
         GSLAM::SE3 pose;
@@ -93,7 +94,10 @@ public:
 
         GSLAM::GImage img=cv::imread(rgb_file);
         GSLAM::GImage depth=cv::imread(d_file,cv::IMREAD_UNCHANGED);
-        if(img.empty()) return GSLAM::FramePtr();
+        if(img.empty()) {
+          std::cout << "null image" << std::endl;
+          return GSLAM::FramePtr();
+        }
 
         GSLAM::FramePtr frame(new GSLAM::FrameRGBD(img,depth,camera,curID++,t3));
         frame->setPose(pose);

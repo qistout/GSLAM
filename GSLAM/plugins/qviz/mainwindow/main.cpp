@@ -16,15 +16,16 @@ int run(Svar config){
     bool byMessenger=false;
     Subscriber subStop=messenger.subscribe("messenger/stop",0,[&](bool stop){
         byMessenger=true;
-//        messenger.publish("qviz/ui_thread_run",SvarFunction([]()->void{
-//            LOG(INFO)<<"Hello from ui";
-//        }));
+        messenger.publish("qviz/ui_thread_run",SvarFunction([]()->void{
+            LOG(INFO)<<"Hello from ui";
+        }));
         if(mainWindow)
             mainWindow->shutdown();
     });
 
     Subscriber sub_dataset_status=messenger.subscribe("dataset/status",[&mainWindow](int status){
-        DLOG(INFO)<<"Dataset status updated to "<<status;
+        std::cout << "Dataset status updated to "<< status << std::endl;;
+        // DLOG(INFO)<<"Dataset status updated to "<<status;
         if(mainWindow) mainWindow->datasetStatusUpdated(status);
     });
     Subscriber sub_panel=messenger.subscribe("qviz/add_panel",[&mainWindow](QWidget* panel)

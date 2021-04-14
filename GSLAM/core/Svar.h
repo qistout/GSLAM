@@ -1036,7 +1036,9 @@ public:
     Svar          next;
 
     std::function<Svar(std::vector<Svar>&)> _func;
-    bool          is_method,is_constructor,do_argcheck=true;
+    bool is_method = true;
+    bool is_constructor = true;
+    bool do_argcheck=true;
 };
 
 class SvarProperty{

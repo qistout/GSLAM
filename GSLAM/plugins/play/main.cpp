@@ -44,7 +44,6 @@ int run(Svar config){
     });
 
     auto sub_step=messenger.subscribe("qviz/step",[&](bool ){
-
         if(!_dataset.isOpened()) return;
         if(_dataset.isLive()) return ;
         if(_status==READY||_status==PAUSED)
@@ -56,7 +55,9 @@ int run(Svar config){
                 _pub_dataset_status.publish(_status);
                 return;
             }
-            _pub_frame.publish(frame);
+            if (frame->cameraNum() >= 1) {
+                _pub_frame.publish(frame);
+            }
         }
         _pub_dataset_status.publish(_status);
     });
@@ -144,7 +145,9 @@ int run(Svar config){
                         tictocWarning.Tic();
                     }
                 }
-                else GSLAM::Rate::sleep(shouldSleep);
+                else  {
+                    GSLAM::Rate::sleep(shouldSleep);
+                }
             }
         }
             break;

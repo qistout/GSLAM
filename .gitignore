@@ -24,3 +24,6 @@ ThirdParty/PIL2
 html
 doc/html
 
+out
+.vscode
+.VSCodeCounter

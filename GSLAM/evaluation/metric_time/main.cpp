@@ -9,8 +9,8 @@ int metric_time(Svar config){
     auto pub=messenger.advertise<Svar>("evaluate/time",0);
 
     auto sub0= messenger.subscribe("dataset/frame",[&](FramePtr fr){
-        if(!fr->cameraNum()) return;
-        _data[fr->id()]=GSLAM::TicToc::timestamp();
+        // if(!fr->cameraNum()) return;
+        // _data[fr->id()]=GSLAM::TicToc::timestamp();
     });
 
     auto sub1=messenger.subscribe(slam_name+"/curframe",[&](FramePtr fr){

@@ -17,6 +17,8 @@ int main(int argc,char** argv)
     for(std::string& appname:unParsed){
         Svar run=svar["gslam"]["apps"][appname];
 
+        // std::cout << Json().dump(svar) << std::endl;
+
         if(!run.isFunction()){
             Svar app=Registry::load(appname);
             if(app.isUndefined()){
