@@ -80,7 +80,7 @@ public:
         return path;
     }
     virtual GSLAM::FramePtr grabFrame(){
-        std::cout << "grabFrame in tumrgbd dataset\n";
+        // std::cout << "grabFrame in tumrgbd dataset\n";
         double t1,t2,t3;
         double x,y,z,qx,qy,qz,qw;
         GSLAM::SE3 pose;
